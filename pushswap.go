@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"push-swap/utils"
 	"strconv"
 	"strings"
 )
@@ -17,6 +18,41 @@ func main() {
 		fmt.Println("Error")
 		os.Exit(0)
 	}
+	b := []int{}
+	for len(a) != 1 {
+
+		min, indMin := findMin(a)
+		for a[0] != min {
+			a = utils.Rx(a)
+			fmt.Println("ra")
+		}
+		b, a = utils.Px(b, a)
+		fmt.Println("pb")
+
+	}
+	b = revTab(b)
+	for len(b) != 0 {
+
+		a, b = utils.Px(a, b)
+		fmt.Println("pb")
+
+	}
+	// b = revTab(b)
+	fmt.Println(a)
+	fmt.Println(b)
+
+	// if len(a) == 3 {
+	// 	c := solveThree(a)
+	// 	fmt.Println(c)
+	// } else if len(a) > 3 {
+	// 	n := len(a) - 3
+	// 	b := []int{}
+	// 	for i := 0; i < n; i++ {
+	// 		b, a = utils.Px(b, a)
+	// 	}
+	// 	fmt.Println(b)
+	// 	fmt.Println(a)
+	// }
 
 	// n := len(a) / 2
 
@@ -28,22 +64,24 @@ func main() {
 	// }
 	// a[0], a[min] = a[min], a[0]
 
-	min := a[0]
-	indMin := 0
-	for i := 1; i < len(a); i++ {
-		if a[i] < min {
-			min = a[i]
-			indMin = i
-		}
-	}
-	fmt.Println(indMin)
-	fmt.Println(min)
+	// min := a[0]
+	// indMin := 0
+	// for i := 1; i < len(a); i++ {
+	// 	if a[i] < min {
+	// 		min = a[i]
+	// 		indMin = i
+	// 	}
+	// }
+	// fmt.Println(indMin)
+	// fmt.Println(min)
 
 	// b := []int{}
 	// // fmt.Println(a)
 	// for i := 0; i < n; i++ {
 	// 	b, a = utils.Px(b, a)
 	// }
+	// b = revTab(b)
+
 	// fmt.Println(b)
 	// fmt.Println(a)
 
@@ -71,4 +109,52 @@ func checkErrors(tabstr []string) (bool, []int) {
 	}
 
 	return true, tabNum
+}
+func revTab(t []int) []int {
+	deb := 0
+	fin := len(t) - 1
+	for deb < fin {
+		temp := t[deb]
+		t[deb] = t[fin]
+		t[fin] = temp
+		deb = deb + 1
+		fin = fin - 1
+	}
+	return t
+}
+func solveThree(a []int) []int {
+	if a[0] > a[1] && a[2] > a[1] && a[0] < a[2] {
+		a = utils.Sx(a)
+		fmt.Println("sa")
+	} else if a[0] > a[1] && a[1] > a[2] && a[0] > a[2] {
+		a = utils.Sx(a)
+		fmt.Println("sa")
+		a = utils.Rrx(a)
+		fmt.Println("rra")
+	} else if a[0] > a[1] && a[1] < a[2] && a[0] > a[2] {
+		a = utils.Rx(a)
+		fmt.Println("ra")
+	} else if a[0] < a[1] && a[1] > a[2] && a[0] < a[2] {
+		a = utils.Sx(a)
+		fmt.Println("sa")
+		a = utils.Rx(a)
+		fmt.Println("ra")
+	} else {
+		a = utils.Rrx(a)
+		fmt.Println("rra")
+	}
+
+	return a
+}
+func findMin(a []int) (int, int) {
+	min := a[0]
+	indMin := 0
+	for i := 1; i < len(a); i++ {
+		if a[i] < min {
+			min = a[i]
+			indMin = i
+		}
+	}
+
+	return min, indMin
 }
