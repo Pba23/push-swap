@@ -11,41 +11,42 @@ func main() {
 	if len(os.Args) == 1 || os.Args[1] == "" {
 		return
 	}
-	args := strings.Fields(os.Args[1])
+	// value, exists := os.LookupEnv("ARG")
+	// if exists {
+	// 	fmt.Printf("La variable existe et sa valeur est %s\n", value)
+	// } else {
+	// 	fmt.Println("La variable n'existe pas")
+	// }
+	args := os.Args[1:]
+
+	if len(args) == 1 {
+		args = strings.Fields(args[0])
+	}
+
+	//fmt.Println(args)
 
 	err, a := utils.CheckErrors(args)
+
 	if !err {
 		fmt.Println("Error")
 		os.Exit(0)
 	}
 	if len(a) == 1 {
-		fmt.Print("\n⛔ Impossible : One integer entered !\n\n")
-		fmt.Println("   Bye...🔌")
 		return
 	} else if len(a) == 2 {
 		if a[0] > a[1] {
 			a = utils.Sx(a)
 			fmt.Println("sa")
-			fmt.Print("\n🎯 sorted in : ")
-			fmt.Println(1)
-			fmt.Println()
-			fmt.Println(a)
-		} else {
-			fmt.Print("\n💢 already sorted\n\n")
-			fmt.Println("   Bye...🔌")
-		}
+		} 
 		return
 	}
 	if utils.IsSorted(a) {
-		fmt.Print("\n💢 already sorted\n\n")
-		fmt.Println("   Bye...🔌")
+		fmt.Print("Already sorted\n")
 		return
 	}
 
 	a = solveFive(a)
 
-	fmt.Println()
-	fmt.Println(a)
 	// fmt.Println(b)
 
 }
@@ -154,7 +155,7 @@ func solveFive(a []int) []int {
 
 	}
 	// a = revTab(a)
-	fmt.Print("\n🎯 sorted in : ")
-	fmt.Println(c + cpt)
+	fmt.Println()
+	fmt.Println("Euuuuh", c + cpt)
 	return a
 }

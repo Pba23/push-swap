@@ -12,33 +12,37 @@ import (
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 
-	scanner.Split(bufio.ScanLines)
-
 	var Args []string
 	tabInt := os.Args[1:]
 
+	 if len(tabInt) == 1 {
+		tabInt = strings.Fields(tabInt[0])
+	 } 
+	
 	if len(tabInt) == 0 {
 		return
 	}
 
-	tabInt = strings.Fields(tabInt[0])
-
 	str := ""
 
 	for scanner.Scan() {
-
 		str += scanner.Text() + " "
+		
 	}
+
 	Args = strings.Fields(str)
-	//fmt.Println(Args)
+	if len(Args) == 0 {
+		
+		return
+	}
 
 	if !IsValidInt(tabInt) {
-		//fmt.Println("1")
+		fmt.Println("ERROR")
 		return
 	}
 
 	if !checkErrors(Args) {
-		//fmt.Println("2")
+		fmt.Println("ERROR")
 		return
 	}
 
@@ -72,8 +76,15 @@ func IsValidInt(tab []string) bool {
 		_, err := strconv.Atoi(val)
 
 		if err != nil {
-
 			return false
+		}
+	}
+
+	for i, _ := range tab {
+		for j, _ := range tab {
+			if tab[i] == tab[j] && i != j {
+				return false
+			}
 		}
 	}
 
@@ -110,10 +121,10 @@ func CheckValidity(instructions, tobeSorted []string) bool {
 			stackA, stackB = utils.Rrr(stackA, stackB)
 		}
 
-		fmt.Println("sA", stackA)
-		fmt.Println("Sb", stackB)
+		//fmt.Println("sA", stackA)
+		//fmt.Println("Sb", stackB)
 	}
-	if utils.IsSorted(stackA) {
+	if utils.IsSorted(stackA) && len(stackB) == 0 {
 		return true
 	}
 
