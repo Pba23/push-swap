@@ -14,8 +14,6 @@ func main() {
 
 	scanner.Split(bufio.ScanLines)
 
-	
-
 	var Args []string
 	tabInt := os.Args[1:]
 
@@ -28,11 +26,11 @@ func main() {
 	str := ""
 
 	for scanner.Scan() {
-		
-		str +=  scanner.Text() + " "
+
+		str += scanner.Text() + " "
 	}
-		Args = strings.Fields(str)
-		//fmt.Println(Args)
+	Args = strings.Fields(str)
+	//fmt.Println(Args)
 
 	if !IsValidInt(tabInt) {
 		//fmt.Println("1")
@@ -66,7 +64,6 @@ func checkErrors(tab []string) bool {
 		return false
 	}
 
-
 	return true
 }
 
@@ -75,7 +72,7 @@ func IsValidInt(tab []string) bool {
 		_, err := strconv.Atoi(val)
 
 		if err != nil {
-			
+
 			return false
 		}
 	}
@@ -83,35 +80,36 @@ func IsValidInt(tab []string) bool {
 	return true
 }
 
-func CheckValidity(instructions, tobeSorted []string) (bool) {
+func CheckValidity(instructions, tobeSorted []string) bool {
 	stackA := TransformTab(tobeSorted)
 
 	var stackB []int
 	for _, val := range instructions {
 		switch val {
-		case "pa" : 
+		case "pa":
 			stackA, stackB = utils.Px(stackA, stackB)
-		case "pb" :
+		case "pb":
 			stackB, stackA = utils.Px(stackB, stackA)
-		case "sa" :
+		case "sa":
 			stackA = utils.Sx(stackA)
-		case "sb" :
+		case "sb":
 			stackB = utils.Sx(stackB)
-		case "ss" : 
+		case "ss":
 			stackA, stackB = utils.Ss(stackA, stackB)
-		case "ra" : 
-			stackA  = utils.Rx(stackA)
-		case "rb" : 
-			stackB  = utils.Rx(stackB)
-		case "rr" : 
+		case "ra":
+			stackA = utils.Rx(stackA)
+		case "rb":
+			stackB = utils.Rx(stackB)
+		case "rr":
 			stackA, stackB = utils.Rr(stackA, stackB)
-		case "rra" : 
-			stackA  = utils.Rrx(stackA)
-		case "rrb" : 
-			stackB  = utils.Rrx(stackB)
-		case "rrr" : 
+		case "rra":
+			stackA = utils.Rrx(stackA)
+		case "rrb":
+			stackB = utils.Rrx(stackB)
+		case "rrr":
 			stackA, stackB = utils.Rrr(stackA, stackB)
 		}
+
 		fmt.Println("sA", stackA)
 		fmt.Println("Sb", stackB)
 	}

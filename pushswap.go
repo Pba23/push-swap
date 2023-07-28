@@ -50,18 +50,18 @@ func main() {
 
 }
 
-func revTab(t []int) []int {
-	deb := 0
-	fin := len(t) - 1
-	for deb < fin {
-		temp := t[deb]
-		t[deb] = t[fin]
-		t[fin] = temp
-		deb = deb + 1
-		fin = fin - 1
-	}
-	return t
-}
+// func revTab(t []int) []int {
+// 	deb := 0
+// 	fin := len(t) - 1
+// 	for deb < fin {
+// 		temp := t[deb]
+// 		t[deb] = t[fin]
+// 		t[fin] = temp
+// 		deb = deb + 1
+// 		fin = fin - 1
+// 	}
+// 	return t
+// }
 func findMin(a []int) (int, int) {
 	min := a[0]
 	indMin := 0
@@ -139,13 +139,13 @@ func solveFive(a []int) []int {
 		cpt++
 
 	}
-	b = revTab(b)
+	// b = revTab(b)
 
 	// fmt.Print("a = ")
 	// fmt.Println(a)
 	a, c := solveThree(a)
 
-	a = revTab(a)
+	// a = revTab(a)
 	for len(b) != 0 {
 
 		a, b = utils.Px(a, b)
@@ -153,9 +153,8 @@ func solveFive(a []int) []int {
 		cpt++
 
 	}
-	a = revTab(a)
+	// a = revTab(a)
 	fmt.Print("\n🎯 sorted in : ")
 	fmt.Println(c + cpt)
 	return a
 }
-

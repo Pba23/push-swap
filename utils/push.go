@@ -1,7 +1,8 @@
 package utils
 
 func Px(a []int, b []int) ([]int, []int) {
-	a = append(a, b[0])
+	a = append([]int{b[0]}, a...)
+	// a = append(a, b[0])
 	b = append(b[:0], b[1:]...)
 
 	return a, b
