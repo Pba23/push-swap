@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"push-swap/utils"
-	"strconv"
 	"strings"
 )
 
@@ -14,7 +13,7 @@ func main() {
 	}
 	args := strings.Fields(os.Args[1])
 
-	err, a := checkErrors(args)
+	err, a := utils.CheckErrors(args)
 	if !err {
 		fmt.Println("Error")
 		os.Exit(0)
@@ -37,7 +36,7 @@ func main() {
 		}
 		return
 	}
-	if isSorted(a) {
+	if utils.IsSorted(a) {
 		fmt.Print("\n💢 already sorted\n\n")
 		fmt.Println("   Bye...🔌")
 		return
@@ -50,29 +49,7 @@ func main() {
 	// fmt.Println(b)
 
 }
-func checkErrors(tabstr []string) (bool, []int) {
-	tabNum := []int{}
-	for i := 0; i < len(tabstr); i++ {
-		num, err := strconv.Atoi(tabstr[i])
-		if err != nil {
-			return false, nil
-		}
-		tabNum = append(tabNum, num)
-	}
-	for i := 0; i < len(tabNum); i++ {
-		for j := 0; j < len(tabNum); j++ {
-			if i == j {
-				continue
-			}
-			if tabNum[i] == tabNum[j] {
-				// fmt.Println(tabNum[i])
-				return false, nil
-			}
-		}
-	}
 
-	return true, tabNum
-}
 func revTab(t []int) []int {
 	deb := 0
 	fin := len(t) - 1
@@ -181,17 +158,4 @@ func solveFive(a []int) []int {
 	fmt.Println(c + cpt)
 	return a
 }
-func isSorted(a []int) bool {
-	length := len(a)
-	if length <= 1 {
-		return true
-	}
 
-	for i := 1; i < length; i++ {
-		if a[i] < a[i-1] {
-			return false
-		}
-	}
-
-	return true
-}
