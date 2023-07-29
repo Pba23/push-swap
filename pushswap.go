@@ -144,7 +144,7 @@ func solveFive(a []int) []int {
 
 	// fmt.Print("a = ")
 	// fmt.Println(a)
-	a, c := solveThree(a)
+	a, _ = solveThree(a)
 
 	// a = revTab(a)
 	for len(b) != 0 {
@@ -155,7 +155,7 @@ func solveFive(a []int) []int {
 
 	}
 	// a = revTab(a)
-	fmt.Println()
-	fmt.Println("Euuuuh", c + cpt)
+	// fmt.Println()
+	// fmt.Println("Euuuuh", c + cpt)
 	return a
 }
