@@ -11,19 +11,12 @@ func main() {
 	if len(os.Args) == 1 || os.Args[1] == "" {
 		return
 	}
-	// value, exists := os.LookupEnv("ARG")
-	// if exists {
-	// 	fmt.Printf("La variable existe et sa valeur est %s\n", value)
-	// } else {
-	// 	fmt.Println("La variable n'existe pas")
-	// }
+	
 	args := os.Args[1:]
 
 	if len(args) == 1 {
 		args = strings.Fields(args[0])
 	}
-
-	//fmt.Println(args)
 
 	err, a := utils.CheckErrors(args)
 

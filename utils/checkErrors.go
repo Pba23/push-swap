@@ -17,7 +17,6 @@ func CheckErrors(tabstr []string) (bool, []int) {
 				continue
 			}
 			if tabNum[i] == tabNum[j] {
-				// fmt.Println(tabNum[i])
 				return false, nil
 			}
 		}
