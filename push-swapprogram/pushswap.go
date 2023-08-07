@@ -11,7 +11,7 @@ func main() {
 	if len(os.Args) == 1 || os.Args[1] == "" {
 		return
 	}
-	
+
 	args := os.Args[1:]
 
 	if len(args) == 1 {
@@ -28,34 +28,20 @@ func main() {
 		return
 	} else if len(a) == 2 {
 		if a[0] > a[1] {
-			a = utils.Sx(a)
+			utils.Sx(a)
 			fmt.Println("sa")
-		} 
+		}
 		return
 	}
 	if utils.IsSorted(a) {
-		fmt.Print("Already sorted\n")
+		// fmt.Print("Already sorted\n")
 		return
 	}
 
-	a = solveFive(a)
-
-	// fmt.Println(b)
+	solveFive(a)
 
 }
 
-// func revTab(t []int) []int {
-// 	deb := 0
-// 	fin := len(t) - 1
-// 	for deb < fin {
-// 		temp := t[deb]
-// 		t[deb] = t[fin]
-// 		t[fin] = temp
-// 		deb = deb + 1
-// 		fin = fin - 1
-// 	}
-// 	return t
-// }
 func findMin(a []int) (int, int) {
 	min := a[0]
 	indMin := 0
@@ -99,11 +85,7 @@ func solveThree(a []int) ([]int, int) {
 	return a, cpt
 }
 func solveFive(a []int) []int {
-	// b := []int{}
-	// for i := 0; i < 2; i++ {
-	// 	b, a = utils.Px(b, a)
-	// }
-	// a = solveThree(a)
+
 	cpt := 0
 	b := []int{}
 	for len(a) != 3 {
@@ -113,16 +95,25 @@ func solveFive(a []int) []int {
 			if indMin == 1 {
 				a = utils.Sx(a)
 				fmt.Println("sa")
+				if utils.IsSorted(a) {
+					return a
+				}
 				cpt++
 				// fmt.Println(a)
 
 			} else if indMin > (len(a)-1)/2 {
 				a = utils.Rrx(a)
 				fmt.Println("rra")
+				if utils.IsSorted(a) {
+					return a
+				}
 				cpt++
 			} else {
 				a = utils.Rx(a)
 				fmt.Println("ra")
+				if utils.IsSorted(a) {
+					return a
+				}
 				cpt++
 				// fmt.Println(a)
 			}
@@ -133,13 +124,8 @@ func solveFive(a []int) []int {
 		cpt++
 
 	}
-	// b = revTab(b)
-
-	// fmt.Print("a = ")
-	// fmt.Println(a)
 	a, _ = solveThree(a)
 
-	// a = revTab(a)
 	for len(b) != 0 {
 
 		a, b = utils.Px(a, b)
@@ -147,8 +133,6 @@ func solveFive(a []int) []int {
 		cpt++
 
 	}
-	// a = revTab(a)
-	// fmt.Println()
-	// fmt.Println("Euuuuh", c + cpt)
+
 	return a
 }
