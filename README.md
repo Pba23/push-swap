@@ -130,6 +130,7 @@ Through this project, I gained experience with:
 - Go programming principles and best practices
 - Error handling and input validation
 
-## License
+## Collabs
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+[@Serigne Saliou Mbacke Mbaye](https://github.com/SSMM0498)
+[@Louis Sebastian Malack](https://github.com/steb1)
